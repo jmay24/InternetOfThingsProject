@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/InternetOfThingsProject.iml" filepath="$PROJECT_DIR$/InternetOfThingsProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyInternetOfThingsProject.iml" filepath="$PROJECT_DIR$/MyInternetOfThingsProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
