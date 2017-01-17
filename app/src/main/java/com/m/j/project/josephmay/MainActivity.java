@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -18,35 +19,42 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference fDatabase;
     ListView listview;
     ArrayList<String> list = new ArrayList<>();
-    ArrayAdapter <String> adapter;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listview = (ListView) findViewById(R.id.listview);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, list);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line);
         listview.setAdapter(adapter);
 
 
         fDatabase = FirebaseDatabase.getInstance().getReference();
 
 
-        fDatabase.child("messages").child("message").addChildEventListener(new ChildEventListener() {
+        fDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value = dataSnapshot.child("messages").getValue(String.class);
-                adapter.add((String)dataSnapshot.child("messages").getValue());
-                list.add(value);
-                adapter.notifyDataSetChanged();
-
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+                    String temp = (String) messageSnapshot.child("temp").getValue();
+                    String humi = (String) messageSnapshot.child("humi").getValue();
+                    String status = (String) messageSnapshot.child("status").getValue();
+                    adapter.add(humi + " " + temp + " " + status);
+                }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+/*
+        }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot) {
                 adapter.clear();
-                adapter.add((String)dataSnapshot.child("messages").getValue());
-                String value = dataSnapshot.child("messages").getValue(String.class);
+                String value = dataSnapshot.getChildren();
                 list.add(value);
                 adapter.notifyDataSetChanged();
 
@@ -67,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+        });*/
         });
     }
 }
