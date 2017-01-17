@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         listview.setAdapter(mAdapter);
 
 
-    ref.limitToLast(5).addValueEventListener(new ValueEventListener() {
+    ref.limitToLast(2).addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot snapshot) {
             for (DataSnapshot msgSnapshot: snapshot.getChildren()) {
