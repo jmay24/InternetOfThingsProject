@@ -30,10 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         fDatabase = FirebaseDatabase.getInstance().getReference();
-        fDatabase.addChildEventListener(new ChildEventListener() {
+
+
+        fDatabase.child("messages").child("message").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value = dataSnapshot.getValue(String.class);
+                String value = dataSnapshot.child("messages").getValue(String.class);
+                adapter.add((String)dataSnapshot.child("messages").getValue());
                 list.add(value);
                 adapter.notifyDataSetChanged();
 
@@ -42,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 adapter.clear();
-                String value = dataSnapshot.getValue(String.class);
-                adapter.add(value);
+                adapter.add((String)dataSnapshot.child("messages").getValue());
+                String value = dataSnapshot.child("messages").getValue(String.class);
+                list.add(value);
                 adapter.notifyDataSetChanged();
 
             }
