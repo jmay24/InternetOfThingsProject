@@ -37,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+                    adapter.clear();
                     String temp = (String) messageSnapshot.child("temp").getValue();
                     String humi = (String) messageSnapshot.child("humi").getValue();
                     String status = (String) messageSnapshot.child("status").getValue();
-                    adapter.add(humi + " " + temp + " " + status);
+                    adapter.add(humi + " : " + temp + " : " + status);
                 }
             }
 
