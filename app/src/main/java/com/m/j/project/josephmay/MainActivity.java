@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -29,26 +30,33 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        ListView listview = (ListView) findViewById(R.id.listview);
+        final ListView listview = (ListView) findViewById(R.id.listview);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        Chat msg = new Chat("puf", "1234", "Hello FirebaseUI world!");
+        Chat msg = new Chat(23 , 66);
         ref.push().setValue(msg);
 
-        FirebaseListAdapter<Chat> mAdapter = new FirebaseListAdapter<Chat>(this, Chat.class, android.R.layout.two_line_list_item, ref) {
+
+        //DatabaseReference chatRef = ref.child("chatMessage");
+        //Query recentMessages = chatRef.limitToLast(5);
+
+        final FirebaseListAdapter<Chat> mAdapter = new FirebaseListAdapter<Chat>(this, Chat.class, android.R.layout.two_line_list_item, ref) {
             @Override
             protected void populateView(View view, Chat chatMessage, int position) {
-                ((TextView) view.findViewById(android.R.id.text1)).setText(chatMessage.getName());
-                ((TextView) view.findViewById(android.R.id.text2)).setText(chatMessage.getMessage());
+
+                ((TextView) view.findViewById(android.R.id.text1)).setText("Temp: " + String.valueOf(chatMessage.getTemp()));
+                ((TextView) view.findViewById(android.R.id.text2)).setText("Humitity: " + String.valueOf(chatMessage.getHumi()));
 
             }
         };
+
         listview.setAdapter(mAdapter);
 
 
-    ref.limitToLast(2).addValueEventListener(new ValueEventListener() {
+        ref.limitToLast(1).addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot snapshot) {
+
             for (DataSnapshot msgSnapshot: snapshot.getChildren()) {
                 Chat msg = msgSnapshot.getValue(Chat.class);
                 Log.i("Chat", msg.getName()+": " +msg.getMessage());
@@ -112,13 +120,14 @@ public class MainActivity extends AppCompatActivity {
 /*
         fDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+            public void onDataChange(DataSnapshot dataSnapshot) {for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+
                     adapter.clear();
-                    String temp = (String) messageSnapshot.child("temp").getValue();
-                    String humi = (String) messageSnapshot.child("humi").getValue();
-                    String status = (String) messageSnapshot.child("status").getValue();
-                    adapter.add(humi + " : " + temp + " : " + status);
+                   // DatabaseGetter value = messageSnapshot.getValue(DatabaseGetter.class);
+                    String temp = (String) messageSnapshot.child("fHumi").getValue();
+                    String humi = (String) messageSnapshot.child("fStatus").getValue();
+                    String status = (String) messageSnapshot.child("fTemp").getValue();
+                    adapter.add(temp + humi + status);
                 }
             }
 
