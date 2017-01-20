@@ -30,8 +30,8 @@ public class Adapter extends ArrayAdapter<Chat> {
         TextView Temp = (TextView) convertView.findViewById(R.id.Temp);
         TextView Humi = (TextView) convertView.findViewById(R.id.Humi);
         // Populate the data into the template view using the data object
-        Temp.setText((int) chat.getTemp());
-        Humi.setText((int) chat.getHumi());
+        Temp.setText(chat.getTemp());
+        Humi.setText(chat.getHumi());
         // Return the completed view to render on screen
         return convertView;
     }
