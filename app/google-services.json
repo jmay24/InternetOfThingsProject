@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "683987515067-oopocgdnrl0bekcsic375qr28mfp5k5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.m.j.project.josephmay",
+            "certificate_hash": "9834040B83B7F9465D1E4E9ACDE2E7E547DC1BCF"
+          }
+        },
+        {
           "client_id": "683987515067-k5q2bb2sdjj8r9m91m05jbdo0fijvoia.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -88,6 +96,37 @@
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683987515067:android:5e7043ee20bea4e9",
+        "android_client_info": {
+          "package_name": "com.IoT"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683987515067-r643pp44k99rcl5pn8kllk1erofet2k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPim5LyFexrqHRhN1ICJwQIRi2cgw7V3w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

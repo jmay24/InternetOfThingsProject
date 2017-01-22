@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         db.limitToLast(1).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value = dataSnapshot.getValue(String.class);
+                adapter.clear();
+                Float value = dataSnapshot.getValue(Float.class);
                 list.add("System Temperture: " + value);
                 adapter.notifyDataSetChanged();
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 adapter.clear();
-                String value = dataSnapshot.getValue(String.class);
+                Float value = dataSnapshot.getValue(Float.class);
                 list.add("System Temperture: " + value);
                 adapter.notifyDataSetChanged();
 
