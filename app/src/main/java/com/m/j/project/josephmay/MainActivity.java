@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         // Initialize Firebase Auth and Database Reference
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -49,25 +47,31 @@ public class MainActivity extends AppCompatActivity {
 
             // Set up ListView
             final ListView listView = (ListView) findViewById(R.id.listview);
-            final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
+            final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
             listView.setAdapter(adapter);
+
+            //Item item = new Item("Hello"); // testing that i can write values
+            //mDatabase.child("users").push().setValue(item); // Values can be written
 
 
             // Use Firebase to populate the list.
-            mDatabase.child("users").child(mUserId).child("items").addChildEventListener(new ChildEventListener() {
+            mDatabase.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    adapter.add((String) dataSnapshot.child("title").getValue());
+
+                    adapter.add(String.valueOf((Float) dataSnapshot.child("temp").getValue()));
                 }
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    adapter.clear();
+                    adapter.add(String.valueOf((Float) dataSnapshot.child("temp").getValue()));
 
                 }
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    adapter.remove((String) dataSnapshot.child("title").getValue());
+                    adapter.remove((String) dataSnapshot.getValue());
                 }
 
                 @Override
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            // Delete items when clicked
+          /*  // Delete items when clicked
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     mDatabase.child("users").child(mUserId).child("items")
@@ -102,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                 }
-            });
+            });*/
         }
     }
 
