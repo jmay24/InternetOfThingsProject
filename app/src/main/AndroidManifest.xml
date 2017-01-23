@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.m.j.project.josephmay">
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application
@@ -29,6 +30,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".LogInActivity">
+        </activity>
+        <activity android:name=".SignUpActivity">
+        </activity>
             <!-- [START firebase_service] -->
             <service
                 android:name=".MyFirebaseMessagingService">
@@ -37,11 +43,7 @@
                 </intent-filter>
             </service>
             <!-- [END firebase_service] -->
-        </activity>
-        <activity android:name=".LogInActivity">
-        </activity>
-        <activity android:name=".SignUpActivity">
-        </activity>
+
     </application>
 
 

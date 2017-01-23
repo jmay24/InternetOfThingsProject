@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
             listView.setAdapter(adapter);
 
-            //Item item = new Item("Hello"); // testing that i can write values
-            //mDatabase.child("users").push().setValue(item); // Values can be written
+            DatabaseGetter item = new DatabaseGetter("Hello","How are you",true);
+            mDatabase.child("test").push().setValue(item); // Values can be written
 
 
             // Use Firebase to populate the list.
