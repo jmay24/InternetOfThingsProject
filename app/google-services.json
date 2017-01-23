@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "683987515067-9o76a3eptjvafq2dvd7ro8i8tdr3qoa8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.m.j.project.josephmay",
+            "certificate_hash": "AF3B91E2060C7D419915159ADBF04276DBF76825"
+          }
+        },
+        {
           "client_id": "683987515067-oopocgdnrl0bekcsic375qr28mfp5k5r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
