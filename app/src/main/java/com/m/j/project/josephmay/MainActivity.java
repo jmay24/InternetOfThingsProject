@@ -3,6 +3,7 @@ package com.m.j.project.josephmay;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -13,8 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,6 +31,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
+    private FirebaseListAdapter mAdapter;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
     private String mUserId;
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        Button subscribeButton = (Button) findViewById(R.id.button);
+       /* Button subscribeButton = (Button) findViewById(R.id.button);
         subscribeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, msg);
                 Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity
@@ -69,10 +73,21 @@ public class MainActivity extends AppCompatActivity {
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
             listView.setAdapter(adapter);
 
-            DatabaseGetter item = new DatabaseGetter("Hello","How are you",true);
-            mDatabase.child("test").push().setValue(item); // Values can be written
+            //DatabaseGetter item = new DatabaseGetter(23, 23, true);
+            //mDatabase.child("Item").setValue(item); // Values can be written
 
+            mAdapter = new FirebaseListAdapter<DatabaseGetter>(this, DatabaseGetter.class,
+                    android.R.layout.two_line_list_item, mDatabase) {
+                @Override
+                protected void populateView(View view, DatabaseGetter DBentry, int position) {
+                    ((TextView) view.findViewById(android.R.id.text1)).setText("System Temp: " + DBentry.getTemp() + "c");
+                    ((TextView) view.findViewById(android.R.id.text2)).setText("System Stable: " + DBentry.getStatus());
+                }
+            };
+            listView.setAdapter(mAdapter);
+        }
 
+/*
             // Use Firebase to populate the list.
             mDatabase.addChildEventListener(new ChildEventListener() {
                 @Override
@@ -102,8 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {
 
                 }
-            });
-
+            });*/
           /*  // Delete items when clicked
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -127,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             });*/
         }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAdapter.cleanup();
     }
 
     private void loadLogInView() {
@@ -156,5 +174,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static class ContentHolder extends RecyclerView.ViewHolder { // view holder for recycler
+        private final TextView mTempField;
+        private final TextView mHumiField;
+
+        public ContentHolder(View itemView) {
+            super(itemView);
+            mTempField = (TextView) itemView.findViewById(android.R.id.text1);
+            mHumiField = (TextView) itemView.findViewById(android.R.id.text2);
+        }
+
+        public void setTemp(String temp) {
+            mTempField.setText(temp);
+        }
+
+        public void setHumi(String humi) {
+            mHumiField.setText(humi);
+        }
     }
 }

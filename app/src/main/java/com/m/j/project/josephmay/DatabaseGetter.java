@@ -6,31 +6,31 @@ package com.m.j.project.josephmay;
 
 public class DatabaseGetter {
 
-    private String fTemp;
-    private String fHumi;
+    private int fTemp;
+    private int fHumi;
     private boolean fStatus;
 
     public DatabaseGetter(){ // Default constructor
 
     }
 
-    public DatabaseGetter (String temp, String humi, boolean status){
+    public DatabaseGetter (int temp, int humi, boolean status){
         fTemp = temp;
         fHumi = humi;
         fStatus = status;
     }
 
-    public String getTemp(){
+    public int getTemp(){
         return fTemp;
     }
-    public void setTemp(String temp){
+    public void setTemp(int temp){
         fTemp = temp;
     }
 
-    public String getHumi(){
+    public int getHumi(){
         return fHumi;
     }
-    public void setHumi(String humi){
+    public void setHumi(int humi){
         fHumi = humi;
     }
 
@@ -38,7 +38,7 @@ public class DatabaseGetter {
         return fStatus;
     }
 
-    public void setHStatus(Boolean status){
+    public void setStatus(Boolean status){
         fStatus = status;
     }
 
