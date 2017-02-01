@@ -9,6 +9,7 @@ public class DatabaseGetter {
     private int fTemp;
     private int fHumi;
     private boolean fStatus;
+    private boolean status;
 
     public DatabaseGetter(){ // Default constructor
 
