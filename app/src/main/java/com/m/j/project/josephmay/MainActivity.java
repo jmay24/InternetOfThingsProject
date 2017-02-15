@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
     private String mUserId;
-    private static final String TAG = "MainActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,21 +44,6 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-       /* Button subscribeButton = (Button) findViewById(R.id.button);
-        subscribeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // [START subscribe_topics]
-                FirebaseMessaging.getInstance().subscribeToTopic("push");
-                // [END subscribe_topics]
-
-                // Log and toast
-                String msg = ("success");
-                Log.d(TAG, msg);
-                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         if (mFirebaseUser == null) {
             // Not logged in, launch the Log In activity
@@ -144,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAdapter.cleanup();
+       // mAdapter.cleanup();
     }
 
     private void loadLogInView() {
