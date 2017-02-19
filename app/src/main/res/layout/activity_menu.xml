@@ -39,12 +39,71 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/middleLayout"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:background="#DDDDDD">
 
         <TextView
             android:text="Start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2" />
+            android:id="@+id/textView2"
+            android:padding="10dp"
+            android:layout_weight="40"
+            android:textSize="30sp"
+            android:background="#ffffff"
+            android:backgroundTint="#DDDDDD" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:layout_width="194dp"
+                android:layout_height="113dp"
+                android:id="@+id/imageButton2"
+                app:srcCompat="@drawable/temp"
+                android:background="#ffffff"
+                android:scaleType="centerInside"
+                android:padding="10dp"
+                android:layout_gravity="right"
+                android:backgroundTint="#DDDDDD" />
+
+            <ImageButton
+                android:layout_width="155dp"
+                android:layout_height="110dp"
+                app:srcCompat="@drawable/humi"
+                android:id="@+id/imageButton3"
+                android:scaleType="centerInside"
+                android:background="#ffffff"
+                android:backgroundTint="#DDDDDD" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:text="Temperture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:textSize="30sp" />
+
+            <TextView
+                android:text="Humitity"
+                android:layout_width="wrap_content"
+                android:layout_height="59dp"
+                android:id="@+id/textView5"
+                android:autoText="false"
+                android:gravity="right|center_vertical"
+                android:height="20dp"
+                android:textSize="30sp"
+                android:layout_row="0"
+                android:layout_column="3" />
+        </GridLayout>
+
     </LinearLayout>
+
 </LinearLayout>
