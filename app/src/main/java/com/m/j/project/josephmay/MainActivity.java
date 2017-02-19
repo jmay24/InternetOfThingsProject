@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
     private String mUserId;
+    protected Button systemInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
             loadLogInView();
         } else {
             mUserId = mFirebaseUser.getUid();
+
+            systemInfo = (Button) findViewById(R.id.infoButton);
+            systemInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, System_Info.class);
+                    startActivity(intent);
+                }
+            });
 
             // Set up ListView
             final ListView listView = (ListView) findViewById(R.id.listview);
@@ -153,7 +163,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            return true;
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, LogInActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
