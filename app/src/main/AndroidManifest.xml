@@ -35,6 +35,8 @@
         </activity>
         <activity android:name=".SignUpActivity">
         </activity>
+        <activity android:name=".Menu_Screen">
+        </activity>
         <activity android:name=".System_Info">
         </activity>
             <!-- [START firebase_service] -->
