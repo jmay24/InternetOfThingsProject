@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JosephMay</string>
+    <string name="app_name">Jays IoT App</string>
 
     <string name="password_hint">Password</string>
     <string name="email_hint">Email</string>

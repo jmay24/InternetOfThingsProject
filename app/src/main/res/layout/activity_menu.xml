@@ -50,7 +50,7 @@
             <ImageButton
                 android:layout_width="194dp"
                 android:layout_height="113dp"
-                android:id="@+id/imageButton2"
+                android:id="@+id/tempButton"
                 app:srcCompat="@drawable/temp"
                 android:background="#ffffff"
                 android:scaleType="centerInside"
@@ -60,9 +60,9 @@
 
             <ImageButton
                 android:layout_width="155dp"
-                android:layout_height="110dp"
+                android:layout_height="100dp"
                 app:srcCompat="@drawable/humi"
-                android:id="@+id/imageButton3"
+                android:id="@+id/humiButton"
                 android:scaleType="centerInside"
                 android:background="#ffffff"
                 android:backgroundTint="#DDDDDD" />
@@ -98,34 +98,33 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="123dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
         android:id="@+id/bottomLayout"
-        android:weightSum="1"
-        android:layout_weight="0.52">
+        android:weightSum="1">
 
         <ImageButton
-            android:layout_width="121dp"
+            android:layout_width="176dp"
             android:layout_height="85dp"
-            app:srcCompat="@drawable/settings"
-            android:id="@+id/imageButton"
+            app:srcCompat="@drawable/settings_cog"
+            android:id="@+id/settingsButton"
             android:paddingRight="10dp"
-            android:background="@drawable/common_full_open_on_phone"
             android:paddingTop="10dp"
             android:layout_gravity="right"
             android:scaleType="centerInside"
-            android:layout_weight="0.02" />
+            android:background="@android:color/transparent"
+            android:paddingLeft="40dp"
+            android:layout_weight="0.92" />
 
         <TextView
             android:text="Settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView8"
-            android:layout_weight="0.02"
             android:padding="10dp"
             android:paddingLeft="20dp"
             android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textSize="30sp" />
     </LinearLayout>
 
 </LinearLayout>
