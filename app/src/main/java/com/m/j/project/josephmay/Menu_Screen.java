@@ -47,6 +47,15 @@ public class Menu_Screen extends AppCompatActivity {
             }
         });
 
+        ImageButton vibration = (ImageButton) findViewById(R.id.vibrationButton);
+        vibration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Menu_Screen.this, Vibration.class);
+                startActivity(intent);
+            }
+        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

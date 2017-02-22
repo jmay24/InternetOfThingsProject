@@ -45,6 +45,8 @@
         </activity>
         <activity android:name=".Settings">
         </activity>
+        <activity android:name=".Vibration">
+        </activity>
             <!-- [START firebase_service] -->
             <service
                 android:name=".MyFirebaseMessagingService">

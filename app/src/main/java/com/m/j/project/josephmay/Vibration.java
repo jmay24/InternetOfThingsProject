@@ -15,10 +15,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
- * Created by Joseph on 21/02/2017.
+ * Created by Joseph on 22/02/2017.
  */
 
-public class Temperature extends AppCompatActivity {
+public class Vibration extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseListAdapter mAdapter;
@@ -28,7 +28,7 @@ public class Temperature extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_temp);
+        setContentView(R.layout.activity_vibe);
 
         // Initialize Firebase Auth and Database Reference
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -46,14 +46,11 @@ public class Temperature extends AppCompatActivity {
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
             listView.setAdapter(adapter);
 
-            //DatabaseGetter item = new DatabaseGetter(23, 23,66, true);
-            //mDatabase.child("Item").setValue(item); // Values can be written
-
             mAdapter = new FirebaseListAdapter<DatabaseGetter>(this, DatabaseGetter.class,
                     android.R.layout.two_line_list_item, mDatabase) {
                 @Override
                 protected void populateView(View view, DatabaseGetter DBentry, int position) {
-                    ((TextView) view.findViewById(android.R.id.text1)).setText("System Temperature: " + DBentry.getTemp() + "c");
+                    ((TextView) view.findViewById(android.R.id.text1)).setText("Vibration Value: " + DBentry.getVibe());
                 }
             };
             listView.setAdapter(mAdapter);
@@ -61,6 +58,7 @@ public class Temperature extends AppCompatActivity {
 
 
     }
+
     private void loadLogInView() {
         Intent intent = new Intent(this, LogInActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

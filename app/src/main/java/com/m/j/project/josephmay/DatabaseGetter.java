@@ -9,16 +9,18 @@ public class DatabaseGetter {
     private int fTemp;
     private int fHumi;
     private boolean fStatus;
-    private boolean status;
+    private int fVibe;
 
     public DatabaseGetter(){ // Default constructor
 
     }
 
-    public DatabaseGetter (int temp, int humi, boolean status){
+    public DatabaseGetter (int temp, int humi, int vibe, boolean status){
         fTemp = temp;
         fHumi = humi;
+        fVibe = vibe;
         fStatus = status;
+
     }
 
     public int getTemp(){
@@ -26,6 +28,13 @@ public class DatabaseGetter {
     }
     public void setTemp(int temp){
         fTemp = temp;
+    }
+
+    public int getVibe(){
+        return fVibe;
+    }
+    public void setVibe(int vibration ){
+        fVibe = vibration;
     }
 
     public int getHumi(){
