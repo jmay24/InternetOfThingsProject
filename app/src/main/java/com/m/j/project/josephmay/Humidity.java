@@ -49,8 +49,6 @@ public class Humidity extends AppCompatActivity {
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
             listView.setAdapter(adapter);
 
-            //DatabaseGetter item = new DatabaseGetter(23, 23, true);
-            //mDatabase.child("Item").setValue(item); // Values can be written
 
             mAdapter = new FirebaseListAdapter<DatabaseGetter>(this, DatabaseGetter.class,
                     android.R.layout.two_line_list_item, mDatabase) {

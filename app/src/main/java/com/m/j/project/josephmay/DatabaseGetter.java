@@ -10,16 +10,18 @@ public class DatabaseGetter {
     private int fHumi;
     private boolean fStatus;
     private int fVibe;
+    private int fSerial;
 
     public DatabaseGetter(){ // Default constructor
 
     }
 
-    public DatabaseGetter (int temp, int humi, int vibe, boolean status){
+    public DatabaseGetter (int temp, int humi, int vibe, int serial, boolean status){
         fTemp = temp;
         fHumi = humi;
         fVibe = vibe;
         fStatus = status;
+        fSerial = serial;
 
     }
 
@@ -42,6 +44,13 @@ public class DatabaseGetter {
     }
     public void setHumi(int humi){
         fHumi = humi;
+    }
+
+    public int getSerial(){
+        return fSerial;
+    }
+    public void setSerial(int serial ){
+        fSerial = serial;
     }
 
     public Boolean getStatus(){

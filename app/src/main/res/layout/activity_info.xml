@@ -5,18 +5,31 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="152dp"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="218dp">
 
         <Button
-            android:text="Subscribe to Topic"
-            android:layout_width="match_parent"
+            android:text="Test Database Connection"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button"
             android:padding="20dp"
             android:paddingLeft="40dp"
             android:paddingTop="20dp"
             android:foregroundGravity="right" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="129dp">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:id="@+id/listview"
+            android:layout_margin="20dp" />
     </LinearLayout>
 
 </LinearLayout>

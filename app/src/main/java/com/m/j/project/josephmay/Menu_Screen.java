@@ -3,12 +3,15 @@ package com.m.j.project.josephmay;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 /**
  * Created by Joseph on 19/02/2017.
@@ -16,9 +19,20 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Menu_Screen extends AppCompatActivity {
 
+    private static final String TAG = "Menu_Screen";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        // [START subscribe_topics]
+        FirebaseMessaging.getInstance().subscribeToTopic("push");
+        // [END subscribe_topics]
+
+        // Log and toast
+        String msg = ("Connected to Device");
+        Log.d(TAG, msg);
+        Toast.makeText(Menu_Screen.this, msg, Toast.LENGTH_SHORT).show();
 
         ImageButton humi = (ImageButton) findViewById(R.id.humiButton);
         humi.setOnClickListener(new View.OnClickListener() {
