@@ -9,10 +9,18 @@
     android:baselineAligned="false">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="267dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:id="@+id/topLayout">
+        android:id="@+id/topLayout"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="81dp"
+            android:layout_height="62dp"
+            app:srcCompat="@drawable/iot"
+            android:id="@+id/imageView"
+            android:layout_weight="1" />
 
         <TextView
             android:text="Smart Enviroment System"
