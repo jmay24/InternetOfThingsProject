@@ -7,10 +7,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 /**
@@ -20,18 +25,35 @@ import com.google.firebase.messaging.FirebaseMessaging;
 public class Menu_Screen extends AppCompatActivity {
 
     private static final String TAG = "Menu_Screen";
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseListAdapter mAdapter;
+    private FirebaseUser mFirebaseUser;
+    private DatabaseReference mDatabase;
+    private String mUserId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        // Initialize Firebase Auth and Database Reference
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        if (mFirebaseUser == null) {
+            // Not logged in, launch the Log In activity
+            loadLogInView();
+        } else {
+            mUserId = mFirebaseUser.getUid();
+
+        }
+
 
         // [START subscribe_topics]
         FirebaseMessaging.getInstance().subscribeToTopic("push");
         // [END subscribe_topics]
 
         // Log and toast
-        String msg = ("Connected to Device");
-        Log.d(TAG, msg);
+        String msg = ("Push Notifications Active");
         Toast.makeText(Menu_Screen.this, msg, Toast.LENGTH_SHORT).show();
 
         ImageButton humi = (ImageButton) findViewById(R.id.humiButton);
@@ -42,6 +64,7 @@ public class Menu_Screen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         ImageButton temp = (ImageButton) findViewById(R.id.tempButton);
         temp.setOnClickListener(new View.OnClickListener() {
@@ -69,13 +92,19 @@ public class Menu_Screen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
+    }
+    private void loadLogInView() {
+        Intent intent = new Intent(this, LogInActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     @Override

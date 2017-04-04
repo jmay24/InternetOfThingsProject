@@ -36,10 +36,10 @@ public class Temperature extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         if (mFirebaseUser == null) {
-            // Not logged in, launch the Log In activity
-            loadLogInView();
-        } else {
-            mUserId = mFirebaseUser.getUid();
+                // Not logged in, launch the Log In activity
+                loadLogInView();
+            } else {
+                mUserId = mFirebaseUser.getUid();
 
             // Set up ListView
             final ListView listView = (ListView) findViewById(R.id.listview);
@@ -53,7 +53,8 @@ public class Temperature extends AppCompatActivity {
                     android.R.layout.two_line_list_item, mDatabase) {
                 @Override
                 protected void populateView(View view, DatabaseGetter DBentry, int position) {
-                    ((TextView) view.findViewById(android.R.id.text1)).setText("System Temperature: " + DBentry.getTemp() + "c");
+                    ((TextView) view.findViewById(android.R.id.text1)).setText
+                            ("System Temperature: " + DBentry.getTemp() + "c");
                 }
             };
             listView.setAdapter(mAdapter);

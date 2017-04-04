@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Smart IoT</string>
+    <string name="app_name">Smart Environment System</string>
 
     <string name="password_hint">Password</string>
     <string name="email_hint">Email</string>
@@ -15,5 +15,6 @@
     <string name="add_item">Add New Item</string>
     <string name="action_logout">Logout</string>
     <string name="subscribed">msg_subscribed</string>
+    <string name="icon_name">SES</string>
 
 </resources>
