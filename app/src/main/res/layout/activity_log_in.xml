@@ -7,7 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".LogInActivity" >
+    tools:context=".LogInActivity"
+    android:backgroundTint="@android:color/transparent"
+    android:background="@android:color/background_light">
 
     <EditText android:id="@+id/emailField"
         android:layout_width="match_parent"
@@ -38,9 +40,18 @@
     <TextView android:id="@+id/signUpText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/sign_up_text"
         android:layout_below="@+id/loginButton"
+        android:layout_centerHorizontal="true"></TextView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/signUpText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="69dp"
-        android:text="@string/sign_up_text"></TextView>
+        android:layout_marginTop="18dp"
+        android:background="@drawable/splashscreen"></LinearLayout>
 
 </RelativeLayout>
